@@ -26,9 +26,9 @@ public class Blackjack {
     Scanner kbReader = new Scanner(System.in);
     boolean gameOver = false;
     boolean stayed = false;
-    int wins = 0;
-    int loses = 0;
-    int blackjacks = 0;
+    double wins = 0;
+    double loses = 0;
+    double blackjacks = 0;
     boolean doubDown = false;
 
     while (!gameOver) {
@@ -99,6 +99,7 @@ public class Blackjack {
           stayed = false;
           compHand.add(BlackjackDeck.getNextCard());
           compHand.add(BlackjackDeck.getNextCard());
+          doubDown = false;
 
           playerHand.add(BlackjackDeck.getNextCard());
           playerHand.add(BlackjackDeck.getNextCard());
@@ -120,6 +121,7 @@ public class Blackjack {
           stayed = false;
           compHand.add(BlackjackDeck.getNextCard());
           compHand.add(BlackjackDeck.getNextCard());
+          doubDown = false;
 
           playerHand.add(BlackjackDeck.getNextCard());
           playerHand.add(BlackjackDeck.getNextCard());
@@ -144,6 +146,7 @@ public class Blackjack {
           stayed = false;
           compHand.add(BlackjackDeck.getNextCard());
           compHand.add(BlackjackDeck.getNextCard());
+          doubDown = false;
 
           playerHand.add(BlackjackDeck.getNextCard());
           playerHand.add(BlackjackDeck.getNextCard());
@@ -165,6 +168,7 @@ public class Blackjack {
           stayed = false;
           compHand.add(BlackjackDeck.getNextCard());
           compHand.add(BlackjackDeck.getNextCard());
+          doubDown = false;
 
           playerHand.add(BlackjackDeck.getNextCard());
           playerHand.add(BlackjackDeck.getNextCard());
@@ -187,6 +191,7 @@ public class Blackjack {
             stayed = false;
             compHand.add(BlackjackDeck.getNextCard());
             compHand.add(BlackjackDeck.getNextCard());
+            doubDown = false;
 
             playerHand.add(BlackjackDeck.getNextCard());
             playerHand.add(BlackjackDeck.getNextCard());
@@ -208,6 +213,7 @@ public class Blackjack {
             stayed = false;
             compHand.add(BlackjackDeck.getNextCard());
             compHand.add(BlackjackDeck.getNextCard());
+            doubDown = false;
 
             playerHand.add(BlackjackDeck.getNextCard());
             playerHand.add(BlackjackDeck.getNextCard());
@@ -229,6 +235,7 @@ public class Blackjack {
             stayed = false;
             compHand.add(BlackjackDeck.getNextCard());
             compHand.add(BlackjackDeck.getNextCard());
+            doubDown = false;
 
             playerHand.add(BlackjackDeck.getNextCard());
             playerHand.add(BlackjackDeck.getNextCard());
@@ -250,6 +257,7 @@ public class Blackjack {
             stayed = false;
             compHand.add(BlackjackDeck.getNextCard());
             compHand.add(BlackjackDeck.getNextCard());
+            doubDown = false;
 
             playerHand.add(BlackjackDeck.getNextCard());
             playerHand.add(BlackjackDeck.getNextCard());
@@ -273,6 +281,7 @@ public class Blackjack {
             stayed = false;
             compHand.add(BlackjackDeck.getNextCard());
             compHand.add(BlackjackDeck.getNextCard());
+            doubDown = false;
 
             playerHand.add(BlackjackDeck.getNextCard());
             playerHand.add(BlackjackDeck.getNextCard());
@@ -294,6 +303,7 @@ public class Blackjack {
             stayed = false;
             compHand.add(BlackjackDeck.getNextCard());
             compHand.add(BlackjackDeck.getNextCard());
+            doubDown = false;
 
             playerHand.add(BlackjackDeck.getNextCard());
             playerHand.add(BlackjackDeck.getNextCard());
@@ -315,6 +325,7 @@ public class Blackjack {
             stayed = false;
             compHand.add(BlackjackDeck.getNextCard());
             compHand.add(BlackjackDeck.getNextCard());
+            doubDown = false;
 
             playerHand.add(BlackjackDeck.getNextCard());
             playerHand.add(BlackjackDeck.getNextCard());
@@ -336,6 +347,7 @@ public class Blackjack {
             stayed = false;
             compHand.add(BlackjackDeck.getNextCard());
             compHand.add(BlackjackDeck.getNextCard());
+            doubDown = false;
 
             playerHand.add(BlackjackDeck.getNextCard());
             playerHand.add(BlackjackDeck.getNextCard());
@@ -347,7 +359,7 @@ public class Blackjack {
         }
       }
 
-      if (doubDown = true) {
+      if (doubDown == true) {
         if (handValue2 > compValue2) {
           System.out.println("You win!");
           wins += 2;
@@ -439,7 +451,7 @@ public class Blackjack {
     }
 
     System.out.println(
-        "Wins: " + wins / (wins + loses) + "\nLoses: " + loses / (wins + loses) + "\nBlackjacks: "
-            + blackjacks / (wins + loses));
+        "Wins: " + wins / (wins + loses) * 100 + "%\nLoses: " + loses / (wins + loses) * 100 + "%\nBlackjacks: "
+            + blackjacks / (wins + loses) * 100 + "%");
   }
 }
