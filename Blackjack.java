@@ -33,6 +33,8 @@ public class Blackjack {
     double blackjacks = 0;
     boolean doubDown = false;
     boolean split = false;
+    boolean splitStayed = false;
+    boolean splitDone = false;
 
     while (!gameOver) {
       int handValue1 = 0;
@@ -120,275 +122,663 @@ public class Blackjack {
       if (handValue1 > 21) {
         System.out.println("You lose!");
         loses += 1;
-        System.out.println("Do you want to play again? Type y for another game and done to exit");
-        String in = kbReader.next();
-        if (in.equalsIgnoreCase("y")) {
-          BlackjackDeck = new Deck();
-          BlackjackDeck.shuffle();
-          compHand = new ArrayList<>();
-          playerHand = new ArrayList<>();
-          stayed = false;
-          compHand.add(BlackjackDeck.getNextCard());
-          compHand.add(BlackjackDeck.getNextCard());
-          doubDown = false;
-
-          playerHand.add(BlackjackDeck.getNextCard());
-          playerHand.add(BlackjackDeck.getNextCard());
-          continue;
-        } else if (in.equalsIgnoreCase("done")) {
-          gameOver = true;
-          break;
-        }
+        splitDone = true;
+        if (split == false) {
+          System.out.println("Do you want to play again? Type y for another game and done to exit");
+          String in = kbReader.next();
+          if (in.equalsIgnoreCase("y")) {
+            BlackjackDeck = new Deck();
+            BlackjackDeck.shuffle();
+            compHand = new ArrayList<>();
+            playerHand = new ArrayList<>();
+            stayed = false;
+            compHand.add(BlackjackDeck.getNextCard());
+            compHand.add(BlackjackDeck.getNextCard());
+            doubDown = false;
+            split = false;
+            splitStayed = false;
+            splitDone = false;
+            playerHand.add(BlackjackDeck.getNextCard());
+            playerHand.add(BlackjackDeck.getNextCard());
+            continue;
+          } else if (in.equalsIgnoreCase("done")) {
+            gameOver = true;
+            break;
+          }
+        }     
       } else if (compValue1 > 21) {
         System.out.println("You win!");
         wins += 1;
-        System.out.println("Do you want to play again? Type y for another game and done to exit");
-        String in = kbReader.next();
-        if (in.equalsIgnoreCase("y")) {
-          BlackjackDeck = new Deck();
-          BlackjackDeck.shuffle();
-          compHand = new ArrayList<>();
-          playerHand = new ArrayList<>();
-          stayed = false;
-          compHand.add(BlackjackDeck.getNextCard());
-          compHand.add(BlackjackDeck.getNextCard());
-          doubDown = false;
-
-          playerHand.add(BlackjackDeck.getNextCard());
-          playerHand.add(BlackjackDeck.getNextCard());
-          continue;
-        } else if (in.equalsIgnoreCase("done")) {
-          gameOver = true;
-          break;
+        splitDone = true;
+        if (split == false) {
+          System.out.println("Do you want to play again? Type y for another game and done to exit");
+          String in = kbReader.next();
+          if (in.equalsIgnoreCase("y")) {
+            BlackjackDeck = new Deck();
+            BlackjackDeck.shuffle();
+            compHand = new ArrayList<>();
+            playerHand = new ArrayList<>();
+            stayed = false;
+            compHand.add(BlackjackDeck.getNextCard());
+            compHand.add(BlackjackDeck.getNextCard());
+            doubDown = false;
+            split = false;
+            splitStayed = false;
+            splitDone = false;
+            playerHand.add(BlackjackDeck.getNextCard());
+            playerHand.add(BlackjackDeck.getNextCard());
+            continue;
+          } else if (in.equalsIgnoreCase("done")) {
+            gameOver = true;
+            break;
+          }
         }
       } else if ((handValue1 == 21 || handValue2 == 21) && compValue1 != 21 && compValue2 != 21) {
         System.out.println("You win!");
         wins += 1;
+        splitDone = true;
         if (playerHand.size() == 2) {
           blackjacks += 1;
         }
-        System.out.println("Do you want to play again? Type y for another game and done to exit");
-        String in = kbReader.next();
-        if (in.equalsIgnoreCase("y")) {
-          BlackjackDeck = new Deck();
-          BlackjackDeck.shuffle();
-          compHand = new ArrayList<>();
-          playerHand = new ArrayList<>();
-          stayed = false;
-          compHand.add(BlackjackDeck.getNextCard());
-          compHand.add(BlackjackDeck.getNextCard());
-          doubDown = false;
-
-          playerHand.add(BlackjackDeck.getNextCard());
-          playerHand.add(BlackjackDeck.getNextCard());
-          continue;
-        } else if (in.equalsIgnoreCase("done")) {
-          gameOver = true;
-          break;
+        if (split == false) {
+          System.out.println("Do you want to play again? Type y for another game and done to exit");
+          String in = kbReader.next();
+          if (in.equalsIgnoreCase("y")) {
+            BlackjackDeck = new Deck();
+            BlackjackDeck.shuffle();
+            compHand = new ArrayList<>();
+            playerHand = new ArrayList<>();
+            stayed = false;
+            compHand.add(BlackjackDeck.getNextCard());
+            compHand.add(BlackjackDeck.getNextCard());
+            doubDown = false;
+            split = false;
+            splitStayed = false;
+            splitDone = false;
+            playerHand.add(BlackjackDeck.getNextCard());
+            playerHand.add(BlackjackDeck.getNextCard());
+            continue;
+          } else if (in.equalsIgnoreCase("done")) {
+            gameOver = true;
+            break;
+          }
         }
       } else if ((compValue1 == 21 || compValue2 == 21) && handValue1 != 21 && handValue2 != 21) {
         System.out.println("You lose!");
         loses += 1;
-        System.out.println("Do you want to play again? Type y for another game and done to exit");
-        String in = kbReader.next();
-        if (in.equalsIgnoreCase("y")) {
-          BlackjackDeck = new Deck();
-          BlackjackDeck.shuffle();
-          compHand = new ArrayList<>();
-          playerHand = new ArrayList<>();
-          stayed = false;
-          compHand.add(BlackjackDeck.getNextCard());
-          compHand.add(BlackjackDeck.getNextCard());
-          doubDown = false;
-
-          playerHand.add(BlackjackDeck.getNextCard());
-          playerHand.add(BlackjackDeck.getNextCard());
-          continue;
-        } else if (in.equalsIgnoreCase("done")) {
-          gameOver = true;
-          break;
+        splitDone = true;
+        if (split == false) {
+          System.out.println("Do you want to play again? Type y for another game and done to exit");
+          String in = kbReader.next();
+          if (in.equalsIgnoreCase("y")) {
+            BlackjackDeck = new Deck();
+            BlackjackDeck.shuffle();
+            compHand = new ArrayList<>();
+            playerHand = new ArrayList<>();
+            stayed = false;
+            compHand.add(BlackjackDeck.getNextCard());
+            compHand.add(BlackjackDeck.getNextCard());
+            doubDown = false;
+            split = false;
+            splitStayed = false;
+            splitDone = false;
+            playerHand.add(BlackjackDeck.getNextCard());
+            playerHand.add(BlackjackDeck.getNextCard());
+            continue;
+          } else if (in.equalsIgnoreCase("done")) {
+            gameOver = true;
+            break;
+          }
         }
       } else if (stayed == true && compValue2 >= 17 && compValue2 <= 21) {
         if (handValue2 > compValue2 && handValue2 <= 21) {
           System.out.println("You win!");
           wins += 1;
-          System.out.println("Do you want to play again? Type y for another game and done to exit");
-          String in = kbReader.next();
-          if (in.equalsIgnoreCase("y")) {
-            BlackjackDeck = new Deck();
-            BlackjackDeck.shuffle();
-            compHand = new ArrayList<>();
-            playerHand = new ArrayList<>();
-            stayed = false;
-            compHand.add(BlackjackDeck.getNextCard());
-            compHand.add(BlackjackDeck.getNextCard());
-            doubDown = false;
-
-            playerHand.add(BlackjackDeck.getNextCard());
-            playerHand.add(BlackjackDeck.getNextCard());
-            continue;
-          } else if (in.equalsIgnoreCase("done")) {
-            gameOver = true;
-            break;
+          splitDone = true;
+          if (split == false) {
+            System.out.println("Do you want to play again? Type y for another game and done to exit");
+            String in = kbReader.next();
+            if (in.equalsIgnoreCase("y")) {
+              BlackjackDeck = new Deck();
+              BlackjackDeck.shuffle();
+              compHand = new ArrayList<>();
+              playerHand = new ArrayList<>();
+              stayed = false;
+              compHand.add(BlackjackDeck.getNextCard());
+              compHand.add(BlackjackDeck.getNextCard());
+              doubDown = false;
+              split = false;
+              splitStayed = false;
+              splitDone = false;
+              playerHand.add(BlackjackDeck.getNextCard());
+              playerHand.add(BlackjackDeck.getNextCard());
+              continue;
+            } else if (in.equalsIgnoreCase("done")) {
+              gameOver = true;
+              break;
+            }
           }
         } else if (compValue2 > handValue2 && handValue2 <= 21) {
           System.out.println("You lose!");
           loses += 1;
-          System.out.println("Do you want to play again? Type y for another game and done to exit");
-          String in = kbReader.next();
-          if (in.equalsIgnoreCase("y")) {
-            BlackjackDeck = new Deck();
-            BlackjackDeck.shuffle();
-            compHand = new ArrayList<>();
-            playerHand = new ArrayList<>();
-            stayed = false;
-            compHand.add(BlackjackDeck.getNextCard());
-            compHand.add(BlackjackDeck.getNextCard());
-            doubDown = false;
-
-            playerHand.add(BlackjackDeck.getNextCard());
-            playerHand.add(BlackjackDeck.getNextCard());
-            continue;
-          } else if (in.equalsIgnoreCase("done")) {
-            gameOver = true;
-            break;
+          splitDone = true;
+          if (split == false) {
+            System.out.println("Do you want to play again? Type y for another game and done to exit");
+            String in = kbReader.next();
+            if (in.equalsIgnoreCase("y")) {
+              BlackjackDeck = new Deck();
+              BlackjackDeck.shuffle();
+              compHand = new ArrayList<>();
+              playerHand = new ArrayList<>();
+              stayed = false;
+              compHand.add(BlackjackDeck.getNextCard());
+              compHand.add(BlackjackDeck.getNextCard());
+              doubDown = false;
+              split = false;
+              splitStayed = false;
+              splitDone = false;
+              playerHand.add(BlackjackDeck.getNextCard());
+              playerHand.add(BlackjackDeck.getNextCard());
+              continue;
+            } else if (in.equalsIgnoreCase("done")) {
+              gameOver = true;
+              break;
+            }
           }
         } else if (compValue2 < handValue1 && handValue2 > 21) {
           System.out.println("You lose!");
           loses += 1;
-          System.out.println("Do you want to play again? Type y for another game and done to exit");
-          String in = kbReader.next();
-          if (in.equalsIgnoreCase("y")) {
-            BlackjackDeck = new Deck();
-            BlackjackDeck.shuffle();
-            compHand = new ArrayList<>();
-            playerHand = new ArrayList<>();
-            stayed = false;
-            compHand.add(BlackjackDeck.getNextCard());
-            compHand.add(BlackjackDeck.getNextCard());
-            doubDown = false;
-
-            playerHand.add(BlackjackDeck.getNextCard());
-            playerHand.add(BlackjackDeck.getNextCard());
-            continue;
-          } else if (in.equalsIgnoreCase("done")) {
-            gameOver = true;
-            break;
+          splitDone = true;
+          if (split == false) {
+            System.out.println("Do you want to play again? Type y for another game and done to exit");
+            String in = kbReader.next();
+            if (in.equalsIgnoreCase("y")) {
+              BlackjackDeck = new Deck();
+              BlackjackDeck.shuffle();
+              compHand = new ArrayList<>();
+              playerHand = new ArrayList<>();
+              stayed = false;
+              compHand.add(BlackjackDeck.getNextCard());
+              compHand.add(BlackjackDeck.getNextCard());
+              doubDown = false;
+              split = false;
+              splitStayed = false;
+              splitDone = false;
+              playerHand.add(BlackjackDeck.getNextCard());
+              playerHand.add(BlackjackDeck.getNextCard());
+              continue;
+            } else if (in.equalsIgnoreCase("done")) {
+              gameOver = true;
+              break;
+            }
           }
         } else if (handValue1 > compValue2 && handValue2 > 21) {
           System.out.println("You win!");
           wins += 1;
-          System.out.println("Do you want to play again? Type y for another game and done to exit");
-          String in = kbReader.next();
-          if (in.equalsIgnoreCase("y")) {
-            BlackjackDeck = new Deck();
-            BlackjackDeck.shuffle();
-            compHand = new ArrayList<>();
-            playerHand = new ArrayList<>();
-            stayed = false;
-            compHand.add(BlackjackDeck.getNextCard());
-            compHand.add(BlackjackDeck.getNextCard());
-            doubDown = false;
-
-            playerHand.add(BlackjackDeck.getNextCard());
-            playerHand.add(BlackjackDeck.getNextCard());
-            continue;
-          } else if (in.equalsIgnoreCase("done")) {
-            gameOver = true;
-            break;
+          splitDone = true;
+          if (split == false) {
+            System.out.println("Do you want to play again? Type y for another game and done to exit");
+            String in = kbReader.next();
+            if (in.equalsIgnoreCase("y")) {
+              BlackjackDeck = new Deck();
+              BlackjackDeck.shuffle();
+              compHand = new ArrayList<>();
+              playerHand = new ArrayList<>();
+              stayed = false;
+              compHand.add(BlackjackDeck.getNextCard());
+              compHand.add(BlackjackDeck.getNextCard());
+              doubDown = false;
+              split = false;
+              splitStayed = false;
+              splitDone = false;
+              playerHand.add(BlackjackDeck.getNextCard());
+              playerHand.add(BlackjackDeck.getNextCard());
+              continue;
+            } else if (in.equalsIgnoreCase("done")) {
+              gameOver = true;
+              break;
+            }
           }
         }
       } else if (stayed == true && compValue1 >= 17 && compValue1 <= 21) {
         if (handValue2 > compValue1 && handValue2 <= 21) {
           System.out.println("You win!");
           wins += 1;
-          System.out.println("Do you want to play again? Type y for another game and done to exit");
-          String in = kbReader.next();
-          if (in.equalsIgnoreCase("y")) {
-            BlackjackDeck = new Deck();
-            BlackjackDeck.shuffle();
-            compHand = new ArrayList<>();
-            playerHand = new ArrayList<>();
-            stayed = false;
-            compHand.add(BlackjackDeck.getNextCard());
-            compHand.add(BlackjackDeck.getNextCard());
-            doubDown = false;
-
-            playerHand.add(BlackjackDeck.getNextCard());
-            playerHand.add(BlackjackDeck.getNextCard());
-            continue;
-          } else if (in.equalsIgnoreCase("done")) {
-            gameOver = true;
-            break;
-          }
+          splitDone = true;
+          if (split == false) {
+            System.out.println("Do you want to play again? Type y for another game and done to exit");
+            String in = kbReader.next();
+            if (in.equalsIgnoreCase("y")) {
+              BlackjackDeck = new Deck();
+              BlackjackDeck.shuffle();
+              compHand = new ArrayList<>();
+              playerHand = new ArrayList<>();
+              stayed = false;
+              compHand.add(BlackjackDeck.getNextCard());
+              compHand.add(BlackjackDeck.getNextCard());
+              doubDown = false;
+              split = false;
+              splitStayed = false;
+              splitDone = false;
+              playerHand.add(BlackjackDeck.getNextCard());
+              playerHand.add(BlackjackDeck.getNextCard());
+              continue;
+            } else if (in.equalsIgnoreCase("done")) {
+              gameOver = true;
+              break;
+            }
+          }  
         } else if (compValue1 > handValue2 && handValue2 <= 21) {
           System.out.println("You lose!");
           loses += 1;
-          System.out.println("Do you want to play again? Type y for another game and done to exit");
-          String in = kbReader.next();
-          if (in.equalsIgnoreCase("y")) {
-            BlackjackDeck = new Deck();
-            BlackjackDeck.shuffle();
-            compHand = new ArrayList<>();
-            playerHand = new ArrayList<>();
-            stayed = false;
-            compHand.add(BlackjackDeck.getNextCard());
-            compHand.add(BlackjackDeck.getNextCard());
-            doubDown = false;
-
-            playerHand.add(BlackjackDeck.getNextCard());
-            playerHand.add(BlackjackDeck.getNextCard());
-            continue;
-          } else if (in.equalsIgnoreCase("done")) {
-            gameOver = true;
-            break;
+          splitDone = true;
+          if (split == false) {
+            System.out.println("Do you want to play again? Type y for another game and done to exit");
+            String in = kbReader.next();
+            if (in.equalsIgnoreCase("y")) {
+              BlackjackDeck = new Deck();
+              BlackjackDeck.shuffle();
+              compHand = new ArrayList<>();
+              playerHand = new ArrayList<>();
+              stayed = false;
+              compHand.add(BlackjackDeck.getNextCard());
+              compHand.add(BlackjackDeck.getNextCard());
+              doubDown = false;
+              split = false;
+              splitStayed = false;
+              splitDone = false;
+              playerHand.add(BlackjackDeck.getNextCard());
+              playerHand.add(BlackjackDeck.getNextCard());
+              continue;
+            } else if (in.equalsIgnoreCase("done")) {
+              gameOver = true;
+              break;
+            }
           }
         } else if (compValue1 < handValue1 && handValue2 > 21) {
           System.out.println("You lose!");
           loses += 1;
-          System.out.println("Do you want to play again? Type y for another game and done to exit");
-          String in = kbReader.next();
-          if (in.equalsIgnoreCase("y")) {
-            BlackjackDeck = new Deck();
-            BlackjackDeck.shuffle();
-            compHand = new ArrayList<>();
-            playerHand = new ArrayList<>();
-            stayed = false;
-            compHand.add(BlackjackDeck.getNextCard());
-            compHand.add(BlackjackDeck.getNextCard());
-            doubDown = false;
-
-            playerHand.add(BlackjackDeck.getNextCard());
-            playerHand.add(BlackjackDeck.getNextCard());
-            continue;
-          } else if (in.equalsIgnoreCase("done")) {
-            gameOver = true;
-            break;
+          splitDone = true;
+          if (split == false) {
+            System.out.println("Do you want to play again? Type y for another game and done to exit");
+            String in = kbReader.next();
+            if (in.equalsIgnoreCase("y")) {
+              BlackjackDeck = new Deck();
+              BlackjackDeck.shuffle();
+              compHand = new ArrayList<>();
+              playerHand = new ArrayList<>();
+              stayed = false;
+              compHand.add(BlackjackDeck.getNextCard());
+              compHand.add(BlackjackDeck.getNextCard());
+              doubDown = false;
+              split = false;
+              splitStayed = false;
+              splitDone = true;
+              playerHand.add(BlackjackDeck.getNextCard());
+              playerHand.add(BlackjackDeck.getNextCard());
+              continue;
+            } else if (in.equalsIgnoreCase("done")) {
+              gameOver = true;
+              break;
+            }
           }
         } else if (handValue1 > compValue1 && handValue2 > 21) {
           System.out.println("You win!");
           wins += 1;
-          System.out.println("Do you want to play again? Type y for another game and done to exit");
-          String in = kbReader.next();
-          if (in.equalsIgnoreCase("y")) {
-            BlackjackDeck = new Deck();
-            BlackjackDeck.shuffle();
-            compHand = new ArrayList<>();
-            playerHand = new ArrayList<>();
-            stayed = false;
-            compHand.add(BlackjackDeck.getNextCard());
-            compHand.add(BlackjackDeck.getNextCard());
-            doubDown = false;
+          splitDone = true;
+          if (split == false) {
+            System.out.println("Do you want to play again? Type y for another game and done to exit");
+            String in = kbReader.next();
+            if (in.equalsIgnoreCase("y")) {
+              BlackjackDeck = new Deck();
+              BlackjackDeck.shuffle();
+              compHand = new ArrayList<>();
+              playerHand = new ArrayList<>();
+              stayed = false;
+              compHand.add(BlackjackDeck.getNextCard());
+              compHand.add(BlackjackDeck.getNextCard());
+              doubDown = false;
+              split = false;
+              splitStayed = false;
+              splitDone = false;
 
-            playerHand.add(BlackjackDeck.getNextCard());
-            playerHand.add(BlackjackDeck.getNextCard());
-            continue;
-          } else if (in.equalsIgnoreCase("done")) {
-            gameOver = true;
-            break;
+              playerHand.add(BlackjackDeck.getNextCard());
+              playerHand.add(BlackjackDeck.getNextCard());
+              continue;
+            } else if (in.equalsIgnoreCase("done")) {
+              gameOver = true;
+              break;
+            }
           }
         }
       }
+      
+      
+      
+      if (split == true) {
+        if (splitValue1 > 21) {
+          System.out.println("You lose Your 2nd Hand!");
+          loses += 1;
+          if (splitDone == true) {
+            System.out.println("Do you want to play again? Type y for another game and done to exit");
+            String in = kbReader.next();
+            if (in.equalsIgnoreCase("y")) {
+              BlackjackDeck = new Deck();
+              BlackjackDeck.shuffle();
+              compHand = new ArrayList<>();
+              playerHand = new ArrayList<>();
+              stayed = false;
+              compHand.add(BlackjackDeck.getNextCard());
+              compHand.add(BlackjackDeck.getNextCard());
+              doubDown = false;
+              split = false;
+              splitStayed = false;
+              splitDone = false;
+              playerHand.add(BlackjackDeck.getNextCard());
+              playerHand.add(BlackjackDeck.getNextCard());
+              continue;
+            } else if (in.equalsIgnoreCase("done")) {
+              gameOver = true;
+              break;
+            }
+          }
+        } else if (compValue1 > 21) {
+          System.out.println("You win Your 2nd Hand!");
+          wins += 1;
+          if (splitDone == true) {
+            System.out.println("Do you want to play again? Type y for another game and done to exit");
+            String in = kbReader.next();
+            if (in.equalsIgnoreCase("y")) {
+              BlackjackDeck = new Deck();
+              BlackjackDeck.shuffle();
+              compHand = new ArrayList<>();
+              playerHand = new ArrayList<>();
+              stayed = false;
+              compHand.add(BlackjackDeck.getNextCard());
+              compHand.add(BlackjackDeck.getNextCard());
+              doubDown = false;
+              split = false;
+              splitStayed = false;
+              splitDone = false;
+              playerHand.add(BlackjackDeck.getNextCard());
+              playerHand.add(BlackjackDeck.getNextCard());
+              continue;
+            } else if (in.equalsIgnoreCase("done")) {
+              gameOver = true;
+              break;
+            }
+          }
+        } else if ((splitValue1 == 21 || splitValue2 == 21) && compValue1 != 21 && compValue2 != 21) {
+          System.out.println("You win Your 2nd Hand!");
+          wins += 1;
+          if (playerHand.size() == 2) {
+            blackjacks += 1;
+          }
+          if (splitDone == true) {
+            System.out.println("Do you want to play again? Type y for another game and done to exit");
+            String in = kbReader.next();
+            if (in.equalsIgnoreCase("y")) {
+              BlackjackDeck = new Deck();
+              BlackjackDeck.shuffle();
+              compHand = new ArrayList<>();
+              playerHand = new ArrayList<>();
+              stayed = false;
+              compHand.add(BlackjackDeck.getNextCard());
+              compHand.add(BlackjackDeck.getNextCard());
+              doubDown = false;
+              split = false;
+              splitStayed = false;
+              splitDone = false;
+              playerHand.add(BlackjackDeck.getNextCard());
+              playerHand.add(BlackjackDeck.getNextCard());
+              continue;
+            } else if (in.equalsIgnoreCase("done")) {
+              gameOver = true;
+              break;
+            }
+          }
+        } else if ((compValue1 == 21 || compValue2 == 21) && splitValue1 != 21 && splitValue2 != 21) {
+          System.out.println("You lose Your 2nd Hand!");
+          loses += 1;
+          if (splitDone == true) {
+            System.out.println("Do you want to play again? Type y for another game and done to exit");
+            String in = kbReader.next();
+            if (in.equalsIgnoreCase("y")) {
+              BlackjackDeck = new Deck();
+              BlackjackDeck.shuffle();
+              compHand = new ArrayList<>();
+              playerHand = new ArrayList<>();
+              stayed = false;
+              compHand.add(BlackjackDeck.getNextCard());
+              compHand.add(BlackjackDeck.getNextCard());
+              doubDown = false;
+              split = false;
+              splitStayed = false;
+              splitDone = false;
+              playerHand.add(BlackjackDeck.getNextCard());
+              playerHand.add(BlackjackDeck.getNextCard());
+              continue;
+            } else if (in.equalsIgnoreCase("done")) {
+              gameOver = true;
+              break;
+            }
+          } 
+        } else if (splitStayed == true && compValue2 >= 17 && compValue2 <= 21) {
+          if (splitValue2 > compValue2 && splitValue2 <= 21) {
+            System.out.println("You win Your 2nd Hand!");
+            wins += 1;
+            if (splitDone == true) {
+              System.out.println("Do you want to play again? Type y for another game and done to exit");
+              String in = kbReader.next();
+              if (in.equalsIgnoreCase("y")) {
+                BlackjackDeck = new Deck();
+                BlackjackDeck.shuffle();
+                compHand = new ArrayList<>();
+                playerHand = new ArrayList<>();
+                stayed = false;
+                compHand.add(BlackjackDeck.getNextCard());
+                compHand.add(BlackjackDeck.getNextCard());
+                doubDown = false;
+                split = false;
+                splitStayed = false;
+                splitDone = false;
+                playerHand.add(BlackjackDeck.getNextCard());
+                playerHand.add(BlackjackDeck.getNextCard());
+                continue;
+              } else if (in.equalsIgnoreCase("done")) {
+                gameOver = true;
+                break;
+              }
+            }
+          } else if (compValue2 > splitValue2 && splitValue2 <= 21) {
+            System.out.println("You lose Your 2nd Hand!");
+            loses += 1;
+            if (splitDone == true) {
+              System.out.println("Do you want to play again? Type y for another game and done to exit");
+              String in = kbReader.next();
+              if (in.equalsIgnoreCase("y")) {
+                BlackjackDeck = new Deck();
+                BlackjackDeck.shuffle();
+                compHand = new ArrayList<>();
+                playerHand = new ArrayList<>();
+                stayed = false;
+                compHand.add(BlackjackDeck.getNextCard());
+                compHand.add(BlackjackDeck.getNextCard());
+                doubDown = false;
+                split = false;
+                splitStayed = false;
+                splitDone = false;
+                playerHand.add(BlackjackDeck.getNextCard());
+                playerHand.add(BlackjackDeck.getNextCard());
+                continue;
+              } else if (in.equalsIgnoreCase("done")) {
+                gameOver = true;
+                break;
+              }
+            }
+          } else if (compValue2 < splitValue1 && splitValue2 > 21) {
+            System.out.println("You lose Your 2nd Hand!");
+            loses += 1;
+            if (splitDone == true) {
+              System.out.println("Do you want to play again? Type y for another game and done to exit");
+              String in = kbReader.next();
+              if (in.equalsIgnoreCase("y")) {
+                BlackjackDeck = new Deck();
+                BlackjackDeck.shuffle();
+                compHand = new ArrayList<>();
+                playerHand = new ArrayList<>();
+                stayed = false;
+                compHand.add(BlackjackDeck.getNextCard());
+                compHand.add(BlackjackDeck.getNextCard());
+                doubDown = false;
+                split = false;
+                splitStayed = false;
+                splitDone = false;
+                playerHand.add(BlackjackDeck.getNextCard());
+                playerHand.add(BlackjackDeck.getNextCard());
+                continue;
+              } else if (in.equalsIgnoreCase("done")) {
+                gameOver = true;
+                break;
+              }
+            }
+          } else if (splitValue1 > compValue2 && splitValue2 > 21) {
+            System.out.println("You win Your 2nd Hand!");
+            wins += 1;
+            if (splitDone == true) {
+              System.out.println("Do you want to play again? Type y for another game and done to exit");
+              String in = kbReader.next();
+              if (in.equalsIgnoreCase("y")) {
+                BlackjackDeck = new Deck();
+                BlackjackDeck.shuffle();
+                compHand = new ArrayList<>();
+                playerHand = new ArrayList<>();
+                stayed = false;
+                compHand.add(BlackjackDeck.getNextCard());
+                compHand.add(BlackjackDeck.getNextCard());
+                doubDown = false;
+                split = false;
+                splitStayed = false;
+                splitDone = false;
+                playerHand.add(BlackjackDeck.getNextCard());
+                playerHand.add(BlackjackDeck.getNextCard());
+                continue;
+              } else if (in.equalsIgnoreCase("done")) {
+                gameOver = true;
+                break;
+              }
+            }
+          }
+        } else if (splitStayed == true && compValue1 >= 17 && compValue1 <= 21) {
+          if (splitValue2 > compValue1 && splitValue2 <= 21) {
+            System.out.println("You win Your 2nd Hand!");
+            wins += 1;
+            if (splitDone == true) {
+              System.out.println("Do you want to play again? Type y for another game and done to exit");
+              String in = kbReader.next();
+              if (in.equalsIgnoreCase("y")) {
+                BlackjackDeck = new Deck();
+                BlackjackDeck.shuffle();
+                compHand = new ArrayList<>();
+                playerHand = new ArrayList<>();
+                stayed = false;
+                compHand.add(BlackjackDeck.getNextCard());
+                compHand.add(BlackjackDeck.getNextCard());
+                doubDown = false;
+                split = false;
+                splitStayed = false;
+                splitDone = false;
+                playerHand.add(BlackjackDeck.getNextCard());
+                playerHand.add(BlackjackDeck.getNextCard());
+                continue;
+              } else if (in.equalsIgnoreCase("done")) {
+                gameOver = true;
+                break;
+              }
+            }
+          } else if (compValue1 > splitValue2 && splitValue2 <= 21) {
+            System.out.println("You lose Your 2nd Hand!");
+            loses += 1;
+            if (splitDone == true) {
+              System.out.println("Do you want to play again? Type y for another game and done to exit");
+              String in = kbReader.next();
+              if (in.equalsIgnoreCase("y")) {
+                BlackjackDeck = new Deck();
+                BlackjackDeck.shuffle();
+                compHand = new ArrayList<>();
+                playerHand = new ArrayList<>();
+                stayed = false;
+                compHand.add(BlackjackDeck.getNextCard());
+                compHand.add(BlackjackDeck.getNextCard());
+                doubDown = false;
+                split = false;
+                splitStayed = false;
+                splitDone = false;
+                playerHand.add(BlackjackDeck.getNextCard());
+                playerHand.add(BlackjackDeck.getNextCard());
+                continue;
+              } else if (in.equalsIgnoreCase("done")) {
+                gameOver = true;
+                break;
+              }
+            }
+          } else if (compValue1 < splitValue1 && splitValue2 > 21) {
+            System.out.println("You lose Your 2nd Hand!");
+            loses += 1;
+            if (splitDone == true) {
+              System.out.println("Do you want to play again? Type y for another game and done to exit");
+              String in = kbReader.next();
+              if (in.equalsIgnoreCase("y")) {
+                BlackjackDeck = new Deck();
+                BlackjackDeck.shuffle();
+                compHand = new ArrayList<>();
+                playerHand = new ArrayList<>();
+                stayed = false;
+                compHand.add(BlackjackDeck.getNextCard());
+                compHand.add(BlackjackDeck.getNextCard());
+                doubDown = false;
+                split = false;
+                splitStayed = false;
+                splitDone = false;
+                playerHand.add(BlackjackDeck.getNextCard());
+                playerHand.add(BlackjackDeck.getNextCard());
+                continue;
+              } else if (in.equalsIgnoreCase("done")) {
+                gameOver = true;
+                break;
+              }
+            }
+          } else if (splitValue1 > compValue1 && splitValue2 > 21) {
+            System.out.println("You win Your 2nd Hand!");
+            wins += 1;
+            if (splitDone == true) {
+              System.out.println("Do you want to play again? Type y for another game and done to exit");
+              String in = kbReader.next();
+              if (in.equalsIgnoreCase("y")) {
+                BlackjackDeck = new Deck();
+                BlackjackDeck.shuffle();
+                compHand = new ArrayList<>();
+                playerHand = new ArrayList<>();
+                stayed = false;
+                compHand.add(BlackjackDeck.getNextCard());
+                compHand.add(BlackjackDeck.getNextCard());
+                doubDown = false;
+                split = false;
+                splitStayed = false;
+                splitDone = false;
+                playerHand.add(BlackjackDeck.getNextCard());
+                playerHand.add(BlackjackDeck.getNextCard());
+                continue;
+              } else if (in.equalsIgnoreCase("done")) {
+                gameOver = true;
+                break;
+              }
+            }
+          }
+        }
+      }
+      
+      
 
       if (doubDown == true) {
         if (handValue2 > compValue2) {
@@ -438,13 +828,30 @@ public class Blackjack {
 
       if (playerHand.get(0).getKind().equals(playerHand.get(1).getKind())) {
         System.out.println(
-            "Do you want to split? You are splitting your hand in two and you are dealt 1 more card for each hand and play them separately. Type y or no");
+            "Do you want to split? You are splitting your hand in two and you are dealt 1 more card for each hand\nand then play them separately. Type y or no");
         String splitCards = kbReader.next();
         if (splitCards.equalsIgnoreCase("y")) {
+          if (playerHand.get(0).isAce()) {
+            splitHand.add(playerHand.remove(1));
+            splitHand.add(BlackjackDeck.getNextCard());
+            playerHand.add(BlackjackDeck.getNextCard());
+            split = true;
+            stayed = true;
+          }
           splitHand.add(playerHand.remove(1));
           splitHand.add(BlackjackDeck.getNextCard());
           playerHand.add(BlackjackDeck.getNextCard());
           split = true;
+          
+          System.out.println("Your Hand:");
+          for (int i = 0; i < playerHand.size(); i++) {
+            System.out.println(playerHand.get(i));
+          }
+          
+          System.out.println("\nYour 2nd Hand:");
+          for (int i = 0; i < splitHand.size(); i++) {
+            System.out.println(splitHand.get(i));
+          }
         }
       }
 
@@ -485,6 +892,33 @@ public class Blackjack {
           stayed = true;
         }
       }
+      
+      if (split == true) {
+        System.out.println("Hit or Stay? for Your 2nd Hand");
+        String inp;
+        if (stayed == false) {
+          inp = kbReader.next();
+        } else {
+          inp = "stay";
+        }
+
+        if (inp.equalsIgnoreCase("Hit") || inp.equalsIgnoreCase("Stay")) {
+          if (inp.equalsIgnoreCase("Hit")) {
+            splitHand.add(BlackjackDeck.getNextCard());
+          }
+          if (inp.equalsIgnoreCase("Stay")) {
+            if (compValue1 == 17 || compValue2 == 17) {
+
+            } else if (compValue1 == splitValue1 || compValue2 == splitValue2
+                || compValue2 == splitValue1 || compValue1 == splitValue2) {
+              System.out.println("You tied! This is a push!");
+              gameOver = true;
+            }
+            splitStayed = true;
+          }
+        }
+      }
+      
       if (input.equals("show")) {
         for (int i = 0; i < compHand.size(); i++) {
           System.out.println(compHand.get(i));
