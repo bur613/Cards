@@ -10,6 +10,8 @@ public class Blackjack {
     ArrayList<Card> compHand = new ArrayList<>();
     ArrayList<Card> playerHand = new ArrayList<>();
 
+    ArrayList<Card> splitHand = new ArrayList<>();  //For splits Need to clear every new game
+
     compHand.add(BlackjackDeck.getNextCard());
     compHand.add(BlackjackDeck.getNextCard());
 
@@ -30,12 +32,16 @@ public class Blackjack {
     double loses = 0;
     double blackjacks = 0;
     boolean doubDown = false;
+    boolean split = false;
 
     while (!gameOver) {
       int handValue1 = 0;
       int handValue2 = 0;
       int compValue1 = 0;
       int compValue2 = 0;
+
+      int splitValue1 = 0;
+      int splitValue2 = 0;
 
       System.out.println("Dealer's Hand:\n" + compHand.get(0).kind + " of " + compHand.get(0).suit);
       for (int i = 1; i < compHand.size(); i++) {
@@ -83,8 +89,33 @@ public class Blackjack {
         }
       }
 
-      System.out.println("Hand Value if Aces are 1: " + handValue1);
+      System.out.println("\nHand Value if Aces are 1: " + handValue1);
       System.out.println("Hand Value if Aces are 11: " + handValue2);
+
+      if (split == true) {
+        System.out.println("\nYour 2nd Hand:");
+        for (int i = 0; i < splitHand.size(); i++) {
+          System.out.println(splitHand.get(i));
+        }
+
+        for (Card hand : splitHand) {
+          if (hand.getValue() == 11 || hand.getValue() == 12 || hand.getValue() == 13) {
+            splitValue1 += 10;
+          } else {
+            splitValue1 += hand.getValue();
+          }
+
+          if (hand.isAce() == true) {
+            splitValue2 += 11;
+          } else if (hand.getValue() == 11 || hand.getValue() == 12 || hand.getValue() == 13) {
+            splitValue2 += 10;
+          } else {
+            splitValue2 += hand.getValue();
+          }
+        }
+        System.out.println("\n2nd Hand Value if Aces are 1: " + splitValue1);
+        System.out.println("2nd Hand Value if Aces are 11 " + splitValue2);
+      }
 
       if (handValue1 > 21) {
         System.out.println("You lose!");
@@ -405,6 +436,18 @@ public class Blackjack {
         }
       }
 
+      if (playerHand.get(0).getKind().equals(playerHand.get(1).getKind())) {
+        System.out.println(
+            "Do you want to split? You are splitting your hand in two and you are dealt 1 more card for each hand and play them separately. Type y or no");
+        String splitCards = kbReader.next();
+        if (splitCards.equalsIgnoreCase("y")) {
+          splitHand.add(playerHand.remove(1));
+          splitHand.add(BlackjackDeck.getNextCard());
+          playerHand.add(BlackjackDeck.getNextCard());
+          split = true;
+        }
+      }
+
       if ((handValue1 == 11 || handValue2 == 11) && playerHand.size() == 2) {
         System.out.println(
             "Do you want to double down? You get one more card, and it counts as 2 wins and 2 losses. Type y or no");
@@ -451,7 +494,8 @@ public class Blackjack {
     }
 
     System.out.println(
-        "Wins: " + wins / (wins + loses) * 100 + "%\nLoses: " + loses / (wins + loses) * 100 + "%\nBlackjacks: "
+        "Wins: " + wins / (wins + loses) * 100 + "%\nLoses: " + loses / (wins + loses) * 100
+            + "%\nBlackjacks: "
             + blackjacks / (wins + loses) * 100 + "%");
   }
 }
